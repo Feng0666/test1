@@ -187,6 +187,150 @@
             50% { opacity: 0.6; transform: scale(1.1); }
         }
 
+        /* 作品展示区样式 */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .work-item {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e8eef5;
+            transition: all 0.3s ease;
+        }
+
+        .work-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .work-icon {
+            font-size: 32px;
+            margin-bottom: 14px;
+        }
+
+        .work-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .work-desc {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .work-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .work-tag {
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 12px;
+        }
+
+        /* 悬浮聊天按钮 */
+        .floating-chat-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-chat-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .floating-chat-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: ripple 2s ease-out infinite;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* 联系方式区样式 */
+        .contact-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px;
+            border: 1px solid #e8eef5;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+            transform: translateX(5px);
+        }
+
+        .contact-item:hover .contact-text {
+            color: #fff;
+        }
+
+        .contact-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-text {
+            font-size: 14px;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
         /* 卡片样式 */
         .card {
             background: #ffffff;
@@ -435,6 +579,9 @@
         </div>
     </div>
 
+    <!-- 悬浮聊天按钮 -->
+    <div class="floating-chat-btn" onclick="scrollToChat()">💬</div>
+
     <!-- 个人信息卡片 -->
     <div class="card">
         <div class="card-title">关于我</div>
@@ -458,6 +605,63 @@
         </div>
     </div>
 
+    <!-- 作品展示区 -->
+    <div class="card">
+        <div class="card-title">我的作品</div>
+        <div class="works-grid">
+            <div class="work-item">
+                <div class="work-icon">📝</div>
+                <div class="work-title">AI内容生成平台</div>
+                <div class="work-desc">基于GPT-4开发的智能内容创作工具，支持多场景文案生成</div>
+                <div class="work-tags">
+                    <span class="work-tag">AI</span>
+                    <span class="work-tag">产品设计</span>
+                </div>
+            </div>
+            <div class="work-item">
+                <div class="work-icon">🎨</div>
+                <div class="work-title">品牌视觉升级</div>
+                <div class="work-desc">为科技初创公司设计完整的品牌视觉系统和UI规范</div>
+                <div class="work-tags">
+                    <span class="work-tag">设计</span>
+                    <span class="work-tag">品牌</span>
+                </div>
+            </div>
+            <div class="work-item">
+                <div class="work-icon">📊</div>
+                <div class="work-title">用户增长分析报告</div>
+                <div class="work-desc">通过数据分析优化产品策略，实现月活用户增长30%</div>
+                <div class="work-tags">
+                    <span class="work-tag">数据分析</span>
+                    <span class="work-tag">增长</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系方式区 -->
+    <div class="card">
+        <div class="card-title">联系我</div>
+        <div class="contact-list">
+            <a href="mailto:linan@example.com" class="contact-item">
+                <span class="contact-icon">📧</span>
+                <span class="contact-text">linan@example.com</span>
+            </a>
+            <a href="https://twitter.com/linan" target="_blank" class="contact-item">
+                <span class="contact-icon">🐦</span>
+                <span class="contact-text">@linan</span>
+            </a>
+            <a href="https://github.com/linan" target="_blank" class="contact-item">
+                <span class="contact-icon">💻</span>
+                <span class="contact-text">github.com/linan</span>
+            </a>
+            <a href="#" class="contact-item">
+                <span class="contact-icon">📱</span>
+                <span class="contact-text">微信: linan_official</span>
+            </a>
+        </div>
+    </div>
+
     <!-- 聊天交流卡片 -->
     <div class="card chat-card">
         <div class="card-title chat-title">
@@ -467,7 +671,7 @@
         </div>
         <div class="chat-container">
             <div class="chat-messages" id="chatMessages">
-                <div class="message bot-message">你好！很高兴认识你，有什么想聊的吗？</div>
+                <div class="message bot-message">你好～我是林安。最近在学习用AI做内容策划，有什么想了解的吗？</div>
             </div>
             <div class="chat-input">
                 <input type="text" id="chatInput" placeholder="输入消息..." onkeypress="handleKeyPress(event)" />
@@ -501,14 +705,48 @@
             input.value = '';
             messages.scrollTop = messages.scrollHeight;
             
-            // 模拟回复
+            // 根据问题给出回复
             setTimeout(() => {
                 const botMsg = document.createElement('div');
                 botMsg.className = 'message bot-message';
-                botMsg.textContent = '感谢你的消息！我会尽快回复你。';
+                botMsg.textContent = getReply(text);
                 messages.appendChild(botMsg);
                 messages.scrollTop = messages.scrollHeight;
             }, 800);
+        }
+
+        function getReply(text) {
+            const lowerText = text.toLowerCase();
+            
+            if (lowerText.includes('做什么') || lowerText.includes('忙什么') || lowerText.includes('在做')) {
+                return '我最近主要在整理自己的作品，也在尝试用AI做一些更完整的小项目。';
+            }
+            
+            if (lowerText.includes('擅长') || lowerText.includes('能力') || lowerText.includes('技能')) {
+                return '我比较擅长把复杂问题讲清楚，也比较关注AI应用、内容表达和知识整理这几个方向。';
+            }
+            
+            if (lowerText.includes('你是谁') || lowerText.includes('介绍') || lowerText.includes('名字')) {
+                return '我是林安，一个正在学习用AI做产品的内容策划。';
+            }
+            
+            if (lowerText.includes('联系') || lowerText.includes('邮箱') || lowerText.includes('微信')) {
+                return '你可以通过页面上的联系方式找到我，也可以继续在这里和我交流～';
+            }
+            
+            if (lowerText.includes('作品') || lowerText.includes('项目')) {
+                return '我做过一些AI相关的小项目，页面上有简单介绍，感兴趣可以看看～';
+            }
+            
+            if (lowerText.includes('AI') || lowerText.includes('人工智能')) {
+                return '我一直在关注AI的发展，也在学习怎么用AI做内容和产品。';
+            }
+            
+            if (lowerText.includes('学习') || lowerText.includes('课程') || lowerText.includes('教程')) {
+                return '我主要是自学为主，平时会关注一些AI相关的课程和社区。';
+            }
+            
+            return '谢谢你的提问～关于这个我了解得还不够具体，你可以通过页面上的联系方式和我进一步交流。';
         }
 
         function handleKeyPress(event) {
